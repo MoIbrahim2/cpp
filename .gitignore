@@ -1,0 +1,13 @@
+# binaries and build folders
+/bin/
+/build/
+*.o
+*.obj
+*.out
+*.exe
+a.out
+core
+*.dSYM
+
+# macOS dynamic libs
+*.dylib
