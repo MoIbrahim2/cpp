@@ -23,6 +23,10 @@ class Fraction{
         return dem;
 
     }
+    Fraction(const Fraction& f1){
+        num = f1.num;
+        dem = f1.dem;
+    }
     int GCD() {
     int _dem = dem;
     int _num = num;
@@ -37,7 +41,7 @@ class Fraction{
 void print(){
          cout << "The result is: " << num << "/" << dem << endl;
     }
-    Fraction& operator +(Fraction f1){
+    Fraction operator +(Fraction f1){
         int numResult = (num * f1.dem) + (f1.num * dem);
         int denResult = dem * f1.dem;
         Fraction f2(numResult,denResult);
@@ -50,7 +54,7 @@ void print(){
         
         return f2;
     }    
-    friend Fraction& operator+(int x, Fraction f1);
+    friend Fraction operator+(int x, Fraction f1);
    
     int operator==(Fraction f1){
         int _dem = dem;
@@ -73,13 +77,13 @@ void print(){
         *this = f1 + 1;
         return *this;
     }
-    Fraction & operator++(int){
+    Fraction operator++(int){
         Fraction f1(num,dem);
         *this = f1 + 1;
         return f1;
     }
 };
-Fraction& operator+(int x, Fraction f1){
+Fraction operator+(int x, Fraction f1){
    
     return f1+x;
 }

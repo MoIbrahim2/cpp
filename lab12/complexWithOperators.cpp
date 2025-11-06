@@ -40,11 +40,11 @@ class Complex{
         added.imaginary = imaginary + c.getImaginary();
         return added;
     } 
-    Complex & operator+(Complex c){
+    Complex operator+(Complex c){
         Complex res(real+c.real,imaginary+ c.imaginary);
         return res;
     }
-    friend Complex & operator+(int x,Complex c);
+    friend Complex operator+(int x,Complex c);
     explicit operator int() {
         return real;
     }
@@ -59,7 +59,7 @@ class Complex{
         imaginary++;
         return *this;
     }
-    Complex & operator++(int){
+    Complex operator++(int){
         Complex res(real,imaginary);
         real++;
         imaginary++;
@@ -68,7 +68,7 @@ class Complex{
   
 };
      
-    Complex & operator+(int x,Complex c){
+    Complex operator+(int x,Complex c){
         Complex res(x+c.real, c.imaginary);
         return res;
     }
@@ -92,7 +92,7 @@ int main() {
     c2.printComplex();
     x = (int)c2;
 
-    cout<<x<<endl;   
+    cout<<x<<endl;
     return 0;
 }
 Complex sub(Complex c1, Complex c2){
