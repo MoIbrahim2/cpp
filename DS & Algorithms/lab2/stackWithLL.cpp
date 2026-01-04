@@ -39,6 +39,7 @@ class stackWithLL{
           tos= tmp;
         }
     }
+    
     int pop(int &dequeuVar){
         if(isEmpty()){
             return 0;
@@ -47,7 +48,6 @@ class stackWithLL{
         Node* prevNode = tos->prev;
         delete tos;
         tos = prevNode;
-        
         return 1;
     }
 };
