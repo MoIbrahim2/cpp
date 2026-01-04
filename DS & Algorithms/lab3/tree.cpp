@@ -1,4 +1,5 @@
 #include <iostream>
+#include <cmath>
 using namespace std;
 class Node{
     public:
@@ -73,6 +74,39 @@ class BinaryTree{
         }
 
     }
+    int findMax(){
+        Node * tmp = root;
+        while (tmp->right){
+            tmp = tmp->right;
+        }
+        return tmp->data;
+    }
+    int findMin(){
+        Node * tmp = root;
+        while (tmp->left){
+            tmp = tmp->left;
+        }
+        return tmp->data;
+    }
+    int heightOfNode(int id){
+        Node* n = searchByDataPrivate(id);
+        if(!n) {return -1;}
+        return heightOfNodePrivate(n);
+    }
+    int depthOfNode(int id){
+        Node* n = searchByDataPrivate(id);
+        if(!n) return -1;
+        Node* tmp = root;
+        int count=0;
+        while(tmp!=n){
+            if(tmp->data>n->data)
+                tmp= tmp->left;
+            else 
+                tmp = tmp->right;
+            count++;
+        }
+        return count;
+    }
     void print_inorder(){
         inorder(root);
     }   
@@ -135,12 +169,30 @@ class BinaryTree{
       return NULL;
     }
     int hasOneChild(Node *r){
-        if(isLeaf(r)|| r->right && r->left)
-            return 0;
-        else{
-            return 1;
-        }
+        if (!r) return 0;
+        return (r->left == NULL) != (r->right == NULL); 
     }
+    int heightOfNodePrivate(Node* t){
+    if (t == NULL)
+        return -1; 
+    if (isLeaf(t))
+        return 0; 
+    return 1 + max(heightOfNodePrivate(t->left), heightOfNodePrivate(t->right));
+}
+        // Node* findMaxP(){
+    //     Node * tmp = root;
+    //     while (tmp->right){
+    //         tmp = tmp->right;
+    //     }
+    //     return tmp;
+    // }
+    // Node* findMinP(){
+    //     Node * tmp = root;
+    //     while (tmp->left){
+    //         tmp = tmp->left;
+    //     }
+    //     return tmp;
+    // }
 };
 int main(){
     BinaryTree t1;
@@ -151,7 +203,10 @@ int main(){
     t1.insert(35);
     t1.insert(10);
     t1.insert(25);
-    t1.deleteNode(25);
-    t1.deleteNode(20);
-    t1.print_inorder();
+    t1.insert(28);
+    // t1.print_inorder();
+    // cout<<t1.findMax();
+    // cout<<t1.findMin();
+    cout<<t1.depthOfNode(30)<<endl;
+    cout<<t1.heightOfNode(30)<<endl;
 }  
